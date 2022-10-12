@@ -90,7 +90,7 @@
                                 <h3 class="places-heading">New York</h3>
                                 <p class="places-date">Fri 27 Nov 2016</p>
                                 <p class="places-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="places-buy-btn">Buy Tickets</a>
+                                <button class="places-buy-btn js-buy-tickets">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="places-item">
@@ -99,7 +99,7 @@
                                 <h3 class="places-heading">Paris</h3>
                                 <p class="places-date">Sat 28 Nov 2016</p>
                                 <p class="places-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="places-buy-btn">Buy Tickets</a>
+                                <button class="places-buy-btn js-buy-tickets">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="places-item">
@@ -108,7 +108,7 @@
                                 <h3 class="places-heading">San Francisco</h3>
                                 <p class="places-date">Sun 29 Nov 2016</p>
                                 <p class="places-desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="places-buy-btn">Buy Tickets</a>
+                                <button class="places-buy-btn js-buy-tickets">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -120,15 +120,78 @@
             <!-- Contact section -->
             <div class="content-section">
                 <h2 class="section-heading">CONTACT</h2>
-                <p class="section-sub-heading">Fan? Drop0 a note!</p>
-
+                <p class="section-sub-heading">Fan? Drop a note!</p>
             </div>
         </div>
 
         <div id="footer">
 
         </div>
-
     </div>
+
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close js-modal-close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <header class="modal-header">
+                <i class="modal-heading-icon fa-solid fa-suitcase"></i>
+                Tickets
+            </header>
+
+            <div class="modal-body">
+                <label for="tickets-quantity" class="modal-label">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Tickets, $15 per person
+                </label>
+                <input id="tickets-quantity" type="text" class="modal-input" placeholder="How many?">
+
+                <label for="tickets-email" class="modal-label">
+                    <i class="fa-solid fa-user"></i>
+                    Send To
+                </label>
+                <input id="tickets-email" type="email" class="modal-input" placeholder="Enter email">
+
+                <button id="buy-tickets">
+                    PAY
+                    <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+
+            <footer class="modal-footer">
+                <p class="modal-help">Need <a href="#">help?</a></p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        const buyBtns = document.querySelectorAll('.js-buy-tickets')
+        const modal = document.querySelector('.js-modal')
+        const modalClose = document.querySelector('.js-modal-close')
+        const modalContainer = document.querySelector('.js-modal-container')
+
+        // Ham hien thi modal mua ve (them class open vao modal)
+        function showBuyTickets() {
+            modal.classList.add('open')
+        }
+
+        // Ham an modal mua ve (go bo class open cua modal)
+        function hidenBuyTickets() {
+            modal.classList.remove('open')
+        }
+
+        // Lap qua tung the button va lang nghe click
+        for (const buyBtn of buyBtns) {
+            buyBtn.addEventListener('click', showBuyTickets)
+        }
+
+        // Nghe hanh vi click vao nut close
+        modalClose.addEventListener('click', hidenBuyTickets)
+
+        modal.addEventListener('click', hidenBuyTickets)
+
+        modalContainer.addEventListener('click', function (evnet) {
+            event.stopPropagation()
+        })
+    </script>
 </body>
 </html>
